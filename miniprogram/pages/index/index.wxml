@@ -1,0 +1,123 @@
+<view class="DrawerPage {{modalName=='viewModal'?'show':''}}">
+	<!-- 头部 -->
+	<view class="top">
+		<view class="UCenter-bg">
+			<view class="flex head-box">
+				<open-data type="userAvatarUrl" class="headpng"></open-data>
+				<view class="text-xl">TODO</view>
+			</view>
+			<image src='/images/index.jpg' mode='widthFix' class='back-png' style='width:100%;height:426rpx'></image>
+			<image src="/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+		</view>
+		<van-search model:value="{{search}}" shape="round" placeholder="搜索清单" bind:search="getList" bind:clear="clearSearch" />
+	</view>
+	<!-- 主体 -->
+	<scroll-view scroll-y class="list-box" style="height:calc(100vh - {{topHeight}}px)">
+		<van-swipe-cell right-width="40" wx:for="{{plan}}" wx:key="item">
+			<view class="list-item">
+				<van-checkbox value="{{item.status}}" bind:change="checkChange" data-item="{{item}}" shape="square" icon-size="32rpx" checked-color="#07c160" />
+				<view class="flex content-box" bindtap="showModal" data-item="{{item}}">
+					<view class="item-content color{{item.lever}}">{{item.content}}</view>
+					<view class="item-right">
+						<view wx:if="{{item.endTime}}" style="color:{{util.overTime(item.endTime)?'red':'#999'}}">{{util.timeHandle(item.endTime,'M/D')}}</view>
+						<text wx:if="{{item.remarks}}" class="cuIcon-text"></text>
+					</view>
+				</view>
+			</view>
+			<view slot="right" class="cell__right" bindtap="delTodo" data-item="{{item}}">删除</view>
+		</van-swipe-cell>
+		<view class="list-completed" bindtap="changeShow" wx:if="{{complete.length !=0}}">
+			<van-icon wx:if="{{!showComplete}}" name="arrow" size="25rpx" />
+			<van-icon wx:else name="arrow-down" size="25rpx" />
+			已完成
+		</view>
+		<block wx:if="{{showComplete}}">
+			<van-swipe-cell right-width="40" wx:for="{{complete}}" wx:key="item">
+				<view class="list-item completed">
+					<van-checkbox value="{{item.status}}" bind:change="checkChange" data-item="{{item}}" shape="square" icon-size="32rpx" checked-color="#07c160" />
+					<view class="flex content-box" bindtap="showModal" data-item="{{item}}">
+						<view class="item-content color{{item.lever}}">{{item.content}}</view>
+						<view class="item-right">
+							<view wx:if="{{item.endTime}}" style="color:{{util.overTime(item.endTime)?'red':'#999'}}">{{util.timeHandle(item.endTime,'M/D')}}</view>
+							<text wx:if="{{item.remarks}}" class="cuIcon-text"></text>
+						</view>
+					</view>
+				</view>
+				<view slot="right" class="cell__right" bindtap="delTodo" data-item="{{item}}">删除</view>
+			</van-swipe-cell>
+		</block>
+	</scroll-view>
+	<!-- 新增 -->
+	<view class="add" bindtap="add">
+		<text class="cuIcon-roundaddfill"></text>
+	</view>
+</view>
+<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+	<text class="cuIcon-pullright"></text>
+</view>
+<!-- 全屏抽屉 -->
+<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+	<view class="cu-list menu card-menu margin-bottom-xl shadow-lg" style="padding-top: 100rpx">
+		<view class="detail-content">
+			<textarea value="{{details.content}}" fixed="true" placeholder="请输入内容" bindinput="editContent" maxlength="100" auto-height adjust-position="{{false}}" show-confirm-bar="{{false}}"></textarea>
+		</view>
+		<view class="cu-list menu sm-border">
+			<view class="cu-item" bindtap="selTime">
+				<view class="content">
+					<text class="cuIcon-timefill text-green"></text>
+					<text class="text-grey">到期日</text>
+				</view>
+				<view class="action">
+					<text class="cuIcon-right text-grey" wx:if="{{!details.endTime}}"></text>
+					<block wx:else>
+						<text class="text-grey text-sm">{{details.endTimeStr}}</text>
+						<text class="cuIcon-roundclosefill text-grey" style="margin-left:10rpx" catchtap="delEndTime"></text>
+					</block>
+				</view>
+			</view>
+			<view class="cu-item" bindtap="openLever">
+
+				<view class="content">
+
+					<text class="cuIcon-activityfill text-green"></text>
+					<text class="text-grey">优先级</text>
+				</view>
+				<view class="action">
+					<lever show="{{true}}" bind:change="editLeverChange" active="{{details.lever}}" position="{{false}}" />
+				</view>
+			</view>
+			<view class="cu-item" style="overflow: hidden;border-radius: 0 0 20rpx 20rpx;">
+				<textarea value="{{details.remarks}}" placeholder="添加备注..." bindinput="editRemarks" focus="{{focus}}" auto-height fixed="true" adjust-position="{{false}}" show-confirm-bar="{{false}}" maxlength="100"></textarea>
+			</view>
+		</view>
+	</view>
+	<view class="create-time">创建于：{{details.createTimeStr}}</view>
+</scroll-view>
+<!-- 新增弹框 -->
+<van-popup show="{{addPopup}}" round position="bottom" bind:close="closePopup" safe-area-inset-bottom="{{false}}">
+	<view class="add-box">
+		<input class="add-textarea" model:value="{{addInput}}" placeholder="做点什么?" focus="{{focus}}" adjust-position="{{false}}" maxlength="100"></input>
+		<view class="fun-box">
+			<view class="fun-icon">
+				<text class="cuIcon-timefill" bindtap="selTime" style="{{details.endTime?'color:#39b54a':''}}"></text>
+				<view style="position: relative;height:46rpx" class="flex align-center">
+					<lever show="{{showSelLever}}" active="{{details.lever}}" bind:change="leverChange" />
+					<image wx:if="{{!details.lever}}" src="/images/lever0.png" bindtap="openLever"></image>
+					<image wx:else src="/images/lever{{details.lever}}.png" style="width:34rpx;height:34rpx" bindtap="openLever"></image>
+				</view>
+				<view class="text-grey" wx:if="{{details.endTime}}">截止:{{details.endTimeStr}}</view>
+			</view>
+			<!-- <button form-type="submit" type="default"></button> -->
+			<text class="cuIcon-roundrightfill" bindtap="addConfirm"></text>
+
+		</view>
+	</view>
+	<view wx:if="{{keyboardHeight == 0}}" style="height:{{keyboardHeight + 20}}px"></view>
+	<view wx:else style="height:{{keyboardHeight + 10}}px"></view>
+</van-popup>
+
+<van-popup show="{{datetimePopup}}" round position="bottom" bind:close="closePopup" close-on-click-overlay="{{false}}">
+	<van-datetime-picker type="date" value="{{details.endTIme}}" min-date="{{minDate}}" bind:confirm="datetimeConfirm" bind:cancel="datetimeClose" formatter="{{formatter}}" />
+</van-popup>
+
+<wxs src="../../utils/time.wxs" module="util" />

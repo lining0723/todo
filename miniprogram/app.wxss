@@ -1,0 +1,12 @@
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss";
+
+.flex{
+  display: flex;
+}
+.align-center{
+  align-items: center;
+}
+.space-between{
+  justify-content: space-between;
+}

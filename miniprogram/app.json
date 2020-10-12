@@ -1,0 +1,30 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/notes/index"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ca2100",
+    "navigationBarTitleText": "TodoList",
+    "navigationBarTextStyle": "white"
+  },
+  "usingComponents": {
+      "cu-custom":"/colorui/components/cu-custom",
+      "lever": "/component/lever/lever",
+      "van-button": "/vant/button/index",
+      "van-search": "/vant/search/index",
+      "van-checkbox": "/vant/checkbox/index",
+      "van-icon": "/vant/icon/index",
+      "van-popup": "/vant/popup/index",
+      "van-field": "/vant/field/index",
+      "van-divider": "/vant/divider/index",
+      "van-overlay": "/vant/overlay/index",
+      "van-swipe-cell": "/vant/swipe-cell/index",
+      "van-datetime-picker": "/vant/datetime-picker/index",
+      "van-tabs": "/vant/tabs/index",
+      "van-tab": "/vant/tab/index"
+  },
+  "sitemapLocation": "sitemap.json"
+}

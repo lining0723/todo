@@ -1,0 +1,40 @@
+.sel-lever-box {
+  width: 300rpx;
+  border-radius: 100rpx;
+  z-index: 9999;
+  box-shadow: 0 1rpx 6rpx;
+  overflow: hidden;
+}
+
+.lever-position {
+  position: absolute;
+  top: -160%;
+  left: 0;
+}
+.lever-position2 {
+  position: absolute;
+  bottom: 20%;
+  right: 20rpx;
+}
+.van-tabs__scroll {
+  background-color: rgb(243, 243, 243) !important;
+}
+
+.van-tabs__wrap {
+  height: 60rpx !important;
+  border-radius: 100rpx;
+}
+
+.van-tab {
+  line-height: 60rpx !important;
+}
+
+.van-tabs__line {
+  border-radius: 12rpx !important;
+  background-color: #fff !important;
+  z-index: 0 !important;
+}
+
+.van-tabs__nav {
+  overflow: hidden !important;
+}

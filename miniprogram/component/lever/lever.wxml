@@ -1,0 +1,8 @@
+<view class="sel-lever-box {{position?'lever-position':'lever-position2'}}" wx:if="{{show}}" hover-stop-propagation="true">
+	<van-tabs active="{{active}}" bind:click="change" line-height="100%">
+		<van-tab name="{{0}}" title="无" />
+		<van-tab name="{{1}}" title="!" />
+		<van-tab name="{{2}}" title="!!" />
+		<van-tab name="{{3}}" title="!!!" />
+	</van-tabs>
+</view>

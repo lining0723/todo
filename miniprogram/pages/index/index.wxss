@@ -1,0 +1,351 @@
+page {
+  background-image: var(--gradualBlue);
+  width: 100vw;
+  overflow: hidden;
+}
+
+.UCenter-bg {
+  height: 180rpx;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: center;
+  color: #fff;
+  font-weight: 300;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.UCenter-bg text {
+  opacity: 0.8;
+}
+
+.head-box {
+  align-items: flex-end;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+
+.headpng {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 100rpx;
+  overflow: hidden;
+  display: block;
+  margin-right: 10rpx;
+}
+
+.UCenter-bg .gif-wave {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  mix-blend-mode: screen;
+  height: 100rpx;
+}
+
+map,
+.mapBox {
+  left: 0;
+  z-index: 99;
+  mix-blend-mode: screen;
+  height: 100rpx;
+}
+
+map,
+.mapBox {
+  width: 750rpx;
+  height: 300rpx;
+}
+
+.back-png {
+  position: absolute;
+  z-index: -1;
+}
+
+.list-box {
+  width: 100%;
+  padding: 20rpx 0 20rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+}
+
+.van-checkbox {
+  margin-right: 20rpx;
+}
+
+.content-box {
+  flex: 1;
+  justify-content: space-between;
+  overflow: hidden;
+  margin-right: 10rpx;
+  align-items: center;
+}
+
+.item-content {
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.color0 {
+  color: #333;
+}
+
+.color1 {
+  color: rgb(17, 149, 219);
+}
+
+.color2 {
+  color: rgb(239, 179, 54);
+}
+
+.color3 {
+  color: rgb(216, 30, 6);
+}
+
+.item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.item-right .cuIcon-text {
+  color: #666;
+  font-size: 22rpx;
+}
+
+.van-swipe-cell__right {
+  background-color: #e54d42;
+  color: #fff;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+}
+
+/*已完成*/
+.list-completed {
+  display: inline-block;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 8rpx;
+  padding: 10rpx;
+  font-size: 24rpx;
+  color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.completed .item-content {
+  text-decoration: line-through;
+}
+
+/*新增*/
+.add {
+  position: fixed;
+  bottom: 6vh;
+  right: 50rpx;
+}
+
+.cuIcon-roundaddfill {
+  font-size: 90rpx;
+  color: #39b54a;
+  box-shadow: 0 1rpx 6rpx;
+  border-radius: 100px;
+}
+
+.flex .van-divider {
+  width: 90vw;
+  flex: 1;
+}
+
+.cuIcon-roundrightfill {
+  color: #39b54a;
+  font-size: 60rpx;
+}
+
+.add-box {
+  padding: 10rpx 20rxp;
+}
+
+.add-textarea {
+  margin: 20rpx 10rpx 0 10rpx;
+  width: 92vw;
+}
+
+.ipt-placeholder {
+  /* prettier-ignore */
+  font-size: 15PX;
+  color: #bebebe;
+  text-align: left;
+}
+
+.fun-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 20rpx 0 20rpx;
+}
+
+.fun-box button {
+  line-height: initial;
+  background-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.fun-box button:after {
+  border: 0;
+}
+
+.fun-icon {
+  display: flex;
+  align-items: center;
+}
+
+.fun-icon text {
+  font-size: 46rpx;
+  color: #999;
+  margin-right: 24rpx;
+
+}
+
+.fun-icon image {
+  width: 46rpx;
+  height: 46rpx;
+  margin-right: 24rpx;
+}
+
+.van-popup {
+  overflow-y: visible !important;
+}
+
+/*全屏抽屉*/
+
+.DrawerPage {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0vw;
+  background-color: #fff;
+  transition: all 0.4s;
+}
+
+.DrawerPage.show {
+  transform: scale(0.9, 0.9);
+  left: 85vw;
+  box-shadow: 0 0 60rpx rgba(0, 0, 0, 0.2);
+  transform-origin: 0;
+}
+
+.DrawerWindow {
+  position: absolute;
+  width: 85vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  transform: scale(1, 1) translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
+}
+
+.DrawerWindow.show {
+  transform: scale(1, 1) translateX(0%);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.DrawerClose {
+  position: absolute;
+  width: 40vw;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  color: transparent;
+  padding-bottom: 30rpx;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.6));
+  letter-spacing: 5px;
+  font-size: 50rpx;
+  opacity: 0.1;
+  pointer-events: none;
+  transition: all 0.4s;
+}
+
+.DrawerClose.show {
+  opacity: 1;
+  pointer-events: all;
+  width: 15vw;
+  color: #fff;
+}
+
+.DrawerPage .cu-bar.tabbar .action button.icon {
+  width: 64rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  margin: 0;
+  display: inline-block;
+}
+
+
+/*抽屉里的详情显示*/
+.cu-list {
+  border-radius: 0 0 20rpx 20rpx;
+  overflow: hidden;
+}
+
+.cu-list.card-menu {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+
+.detail-content {
+  background-color: var(--cyan);
+  color: #fff;
+  font-size: 30rpx;
+  padding: 40rpx 20rpx;
+  /* text-align: center; */
+  border-radius: 20rpx 20rpx 0 0;
+  box-sizing: border-box;
+}
+
+.detail-content textarea {
+  width: 100%;
+}
+
+/* .cu-list.menu>.cu-item {
+  padding: 20rpx 20rpx;
+} */
+
+.text-grey {
+  font-size: 28rpx;
+}
+
+.cu-list.menu>.cu-item .content>text[class*=cuIcon] {
+  margin-right: 0;
+}
+
+.cu-list.menu>.cu-item.arrow {
+  padding-right: 50rpx;
+}
+
+/* 隐藏时间选择年*/
+.van-picker__column:first-child {
+  display: none;
+}
+
+.create-time {
+  text-align: center;
+  color: #ccc;
+}
