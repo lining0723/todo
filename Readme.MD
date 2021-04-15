@@ -1,4 +1,7 @@
-===========================
+==========================    
+todo小程序
+使用云函数开发
+
 云函数需要安装wx-server-sdk
 每个云函数目录下运行npm install --save wx-server-sdk@latest
 
